@@ -8,16 +8,17 @@
 #define endereco  0x3F
 #define colunas   16
 #define linhas    2
-ezButton ON_OFF(44);
+ezButton ON_OFF(
+  52);
 
 // INSTANCIANDO OBJETOS
 LiquidCrystal_I2C lcd(endereco, colunas, linhas);
 
 // === Biblioteca para o TimerOne === //
 
-#define botao_MAIS 6                //define o botão no pino 2 (MAIS)
-#define botao_ENTER 5                 //define o botão no pino 3 (ENTER/VOLTAR)
-#define botao_MENOS 4                 //define o botão no pino 4 (MENOS)
+#define botao_MAIS 49                //define o botão no pino 2 (MAIS)
+#define botao_ENTER 51                 //define o botão no pino 3 (ENTER/VOLTAR)
+#define botao_MENOS 53                 //define o botão no pino 4 (MENOS)
 bool L_botao_MAIS = 1;                //variável para fazer a leitura do botão              (MAIS)
 bool LA_botao_MAIS = 1;               //variável para verificar a leitura anterior do botão (MAIS)
 bool L_botao_ENTER = 1;               //variável para fazer a leitura do botão              (ENTER/VOLTAR)
@@ -40,7 +41,7 @@ bool state_2 = false;
 unsigned long ant;
 
 
-Stepper mp(passosPorVolta, 8, 9, 10, 11);
+Stepper mp(passosPorVolta, 50, 46, 48, 44);
 
 void alimentar(int peso) {
   lcd.setCursor(0, 0);
@@ -64,7 +65,7 @@ void ligar() {
   lcd.print("    PET CHEF    ");  //imprime o texto entre aspas
   lcd.setCursor(0, 1);               //posiciona o cursor no display (caracter, linha)
   lcd.print("   AUTOMATICO   ");  //imprime o texto entre aspas
-  delay (3000);
+  delay (1500);
   lcd.clear();                       //limpa todos os caracteres do lcd
   lcd.setCursor(0, 0);               //posiciona o cursor no display (caracter, linha)
   lcd.print(" SEJA BEM VINDO ");  //imprime o texto entre aspas
@@ -91,7 +92,6 @@ void setup() {
 
 
 void loop() {
-
   ON_OFF.loop();
   int state = ON_OFF.getState();
   if (state == LOW) {
